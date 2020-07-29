@@ -48,6 +48,30 @@
 @include('sweetalert::alert')
 
 
+
+
+
+
+
+<script type="text/javascript">
+$(document).ready(function() {
+$("#mydate").persianDatepicker({
+altField: '#mydate',
+altFormat: "YYYY/MM/DD",
+observer: true,
+format: 'YYYY/MM/DD',
+initialValue: false,
+initialValueType: 'persian',
+autoClose: true,
+maxDate: 'today',
+});
+});
+
+</script>
+
+
+
+
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 </html>

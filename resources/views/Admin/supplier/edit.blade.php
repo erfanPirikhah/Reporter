@@ -45,6 +45,14 @@
                             </div>
 
                         </div>
+                        <br><br>
+                        <div class="form-group" >
+                            <label class="col-lg-3 control-label">تاریخ:</label>
+                            <div class="col-lg-9">
+                                <input type="text" name="date" class="myclass" value="{{$supplier->created_at}}" placeholder="تاریخ" id="mydate" >
+                            </div>
+
+                        </div>
                     </fieldset>
 
 

@@ -38,7 +38,7 @@
                         <td>{{$counter++}}</td>
                         <td>{{$supplier->nameSupplier}}</td>
                         <td>{{$supplier->number_phone}}</td>
-                        <td> {{jdate($supplier->created_at)->format('Y-m-d')}}</td>
+                        <td> {{Verta($supplier->created_at)->formatDate()}}</td>
                         <td><a href="{{Route('supplier.show',["supplier"=>$supplier->id])}}" class="btn btn-default btn-raised legitRipple">جزئیات </a> </td>
                         <td>
                             <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">

@@ -11,21 +11,31 @@
         </div>
     </div>
 
-    <div class="panel-body">
-        <div class="content-group-sm">
-            <h1 class="no-margin">نام و نام خانوادگی :</h1>
-            <h1 class="no-margin">{{$supplier->nameSupplier}}</h1>
+        <div class="container mt-20">
+            <table style="width:100%">
+                <tr>
+                    <td><h5 class="no-margin">نام و نام خانوادگی :</h5></td>
+                    <td> <h5 class="no-margin">تلفن همراه  :</h5></td>
+                    <td> <h5 class="no-margin">آخرین بروزرسانی:</h5></td>
+                </tr>
+                <tr>
+                    <td> <h6 class="no-margin">{{$supplier->nameSupplier}}</h6></td>
+                    <td> <h6 class="no-margin text-light">{{$supplier->number_phone}}</h6></td>
+                    <td>  <h6 class="no-margin text-light">{{jdate($supplier->created_at)->format('Y-m-d')}}</h6></td>
+                </tr>
+            </table>
+
+            <br>
+            <small> توضیحات :</small>
+            <div class="well mb-10">
+
+                {{$supplier->description}}
+            </div>
         </div>
 
-        <div class="content-group-sm">
-            <h1 class="no-margin">نام و نام خانوادگی :</h1>
-            <h2 class="no-margin text-light">{{$supplier->number_phone}}</h2>
-        </div>
-        <small> توضیحات :</small>
-        <div class="well">
 
-            {{$supplier->description}}
-        </div>
+
+
     </div>
 </div>
 

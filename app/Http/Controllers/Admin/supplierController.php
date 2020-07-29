@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\supplierRequest;
 use App\Supplier;
 use Illuminate\Http\Request;
+use Morilog\Jalali\CalendarUtils;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class supplierController extends Controller
@@ -70,6 +71,7 @@ class supplierController extends Controller
      */
     public function edit(Supplier $supplier)
     {
+
         return view("Admin.supplier.edit",compact('supplier'));
     }
 
@@ -82,10 +84,32 @@ class supplierController extends Controller
      */
     public function update(supplierRequest $request, Supplier $supplier)
     {
+
+        ///check date Database == $request->date
+        if ($supplier->created_at != $request->date ){
+            ///convert number Persin to English
+            $date_en = $this->convert_numbers($request->date);
+            ///explode date and save to vaiable
+            $persian_date = explode("/",   $date_en);
+            $year=$persian_date[0];
+            $month = $persian_date[1];
+            $day = $persian_date[2];
+
+            ///convert Persian date to  miladi
+            $miladiDate = CalendarUtils::toGregorian($year,$month, $day);
+            ///impload by / sepreator  [2020/2/2]
+             $DateConvert = implode('/', $miladiDate);
+
+        }else{
+            $DateConvert=$request->date;
+        }
+
+
        $supplier->update([
             'nameSupplier'=>$request->nameSupplier,
             'number_phone'=>$request->numberSupplier,
             'description'=>$request->description,
+            'created_at' =>$DateConvert
         ]);
 
         alert()->success('با موفقیت بروزرسانی شد');
@@ -105,6 +129,15 @@ class supplierController extends Controller
         alert()->error('باموفقیت حذف شد!!!');
         return back();
 
+    }
+
+
+    public  function convert_numbers($input)
+    {
+        $persian = array('۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹',',');
+        $english = array('0', '1', '2', '3', '4', '5', '6', '7', '8', '9',',');
+        $string = str_replace($persian, $english, $input);
+        return $string;
     }
 
 
