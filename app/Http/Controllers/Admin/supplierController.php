@@ -18,7 +18,8 @@ class supplierController extends Controller
      */
     public function index()
     {   $counter=1;
-        $suppliers=Supplier::latest()->paginate(20);
+        $suppliers=Supplier::latest()->paginate(15);
+        ///load view supplier index and send data $suppliers
         return view("Admin.supplier.index",compact('suppliers','counter'));
     }
 
@@ -41,6 +42,7 @@ class supplierController extends Controller
     public function store(supplierRequest $request)
     {
 
+        /// insert to Database [suppliers]
         Supplier::create([
             'nameSupplier'=>$request->nameSupplier,
             'number_phone'=>$request->numberSupplier,
@@ -48,7 +50,6 @@ class supplierController extends Controller
         ]);
 
         alert()->success('با موفقیت افزوده شد');
-
         return redirect('supplier');
     }
 
@@ -104,7 +105,7 @@ class supplierController extends Controller
             $DateConvert=$request->date;
         }
 
-
+        /// update supplier  Database [suppliers]
        $supplier->update([
             'nameSupplier'=>$request->nameSupplier,
             'number_phone'=>$request->numberSupplier,
@@ -113,7 +114,6 @@ class supplierController extends Controller
         ]);
 
         alert()->success('با موفقیت بروزرسانی شد');
-
         return redirect('supplier');
     }
 
@@ -132,6 +132,7 @@ class supplierController extends Controller
     }
 
 
+    ///function for convert persionNumber to english number
     public  function convert_numbers($input)
     {
         $persian = array('۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹',',');

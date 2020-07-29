@@ -4,6 +4,7 @@
 
     @include('Admin.layout.errors')
     <!-- Basic legend -->
+        {{--  $supplier resive on from supplierController@edit--}}
         <form class="form-horizontal" method="post" action="{{route('supplier.update',['supplier'=>$supplier->id])}}">
             {{ csrf_field() }}
             {{ method_field('patch') }}

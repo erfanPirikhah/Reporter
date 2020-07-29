@@ -10,5 +10,6 @@ Route::get('/', function () {
 
 Route::namespace('Admin')->group(function () {
     Route::resource('supplier' ,'supplierController');
+    Route::resource('commodity' ,'commodityController');
 
 });

@@ -33,6 +33,7 @@
                 </thead>
                 <tbody>
 
+            {{--  $suppliers resive on from supplierController@index--}}
                 @foreach($suppliers as $supplier)
                     <tr>
                         <td>{{$counter++}}</td>
@@ -60,6 +61,10 @@
 
                 </tbody>
             </table>
+        </div>
+        <br><br>
+        <div style="text-align: center">
+            {{$suppliers->render()}}
         </div>
     </div>
 
