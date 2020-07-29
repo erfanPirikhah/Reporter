@@ -11,7 +11,13 @@
 
                 <div class="panel-body">
                     <fieldset>
-                        <legend class="text-semibold"><h2>افزودن تامین کننده ی جدید</h2></legend>
+                        <div>
+                            <a href="{{route('supplier.index')}}" style="float: left" class=" btn btn-xlg bg-teal-400">  بازگشت <i
+                                        class="fa fa-arrow-circle-o-left "></i></a>
+                            <legend class="text-semibold"><h2>افزودن تامین کننده ی جدید</h2></legend>
+
+                        </div>
+
 
                         <div class="form-group" id="nameGroup">
                             <label class="col-lg-3 control-label">نام تامین کننده: </label>

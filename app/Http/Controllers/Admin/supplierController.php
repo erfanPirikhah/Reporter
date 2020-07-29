@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\supplierRequest;
 use App\Supplier;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class supplierController extends Controller
 {
@@ -44,7 +45,10 @@ class supplierController extends Controller
             'number_phone'=>$request->numberSupplier,
             'description'=>$request->description,
         ]);
-        return back();
+
+        alert()->success('با موفقیت افزوده شد');
+
+        return redirect('supplier');
     }
 
     /**
@@ -55,7 +59,7 @@ class supplierController extends Controller
      */
     public function show(Supplier $supplier)
     {
-        //
+        return view("Admin.supplier.show",compact('supplier'));
     }
 
     /**
@@ -66,7 +70,7 @@ class supplierController extends Controller
      */
     public function edit(Supplier $supplier)
     {
-        //
+        return view("Admin.supplier.edit",compact('supplier'));
     }
 
     /**
@@ -76,9 +80,17 @@ class supplierController extends Controller
      * @param  \App\Supplier  $supplier
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Supplier $supplier)
+    public function update(supplierRequest $request, Supplier $supplier)
     {
+       $supplier->update([
+            'nameSupplier'=>$request->nameSupplier,
+            'number_phone'=>$request->numberSupplier,
+            'description'=>$request->description,
+        ]);
 
+        alert()->success('با موفقیت بروزرسانی شد');
+
+        return redirect('supplier');
     }
 
     /**
@@ -89,7 +101,10 @@ class supplierController extends Controller
      */
     public function destroy(Supplier $supplier)
     {
-        //
+        $supplier->delete();
+        alert()->error('باموفقیت حذف شد!!!');
+        return back();
+
     }
 
 

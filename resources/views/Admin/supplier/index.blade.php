@@ -4,18 +4,17 @@
 
     <div class="panel panel-flat">
         <div class="panel-heading">
-            <h5 class="panel-title">Striped rows<a class="heading-elements-toggle"><i class="icon-more"></i></a></h5>
-            <div class="heading-elements">
-                <ul class="icons-list">
-                    <li><a data-action="collapse"></a></li>
-                    <li><a data-action="reload"></a></li>
-                    <li><a data-action="close"></a></li>
-                </ul>
+            <div>
+                <h2 class="panel-title" style="float: right">لیست تامین کننده<a class="heading-elements-toggle"><i
+                                class="icon-more"></i></a></h2>
+
+                <a href="{{route('supplier.create')}}" style="float: left" class=" btn btn-xlg bg-teal-400">  افزودن تامین کننده <i
+                            class="fa fa-plus "></i></a>
             </div>
+
         </div>
 
         <div class="panel-body">
-            Example of a table with <code>striped</code> rows. Use <code>.table-striped</code> added to the base <code>.table</code> class to add zebra-striping to any table odd row within the <code>&lt;tbody&gt;</code>. This styling doesn't work in IE8 and lower as <code>:nth-child</code> CSS selector isn't supported in these browser versions. Striped table can be combined with other table styles.
         </div>
 
         <div class="table-responsive">
@@ -23,9 +22,13 @@
                 <thead>
                 <tr>
                     <th>#</th>
-                    <th>نام تامین کننده </th>
+                    <th>نام تامین کننده</th>
                     <th>شماره ی تامین کننده</th>
                     <th>تاریخ ثبت</th>
+                    <th>نمایش</th>
+                    <th>تنظیمات</th>
+
+
                 </tr>
                 </thead>
                 <tbody>
@@ -35,7 +38,22 @@
                         <td>{{$counter++}}</td>
                         <td>{{$supplier->nameSupplier}}</td>
                         <td>{{$supplier->number_phone}}</td>
-                        <td> {{jdate($supplier->created_at)->date()}}</td>
+                        <td> {{jdate($supplier->created_at)->format('Y-m-d')}}</td>
+                        <td><a href="{{Route('supplier.show',["supplier"=>$supplier->id])}}" class="btn btn-default btn-raised legitRipple">جزئیات </a> </td>
+                        <td>
+                            <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+
+                                <form action="{{Route('supplier.destroy',["supplier"=>$supplier->id])}}" method="post">
+                                    {{ method_field('DELETE') }}
+                                    {{ csrf_field() }}
+                                    <div class="btn-group mr-2" role="group" aria-label="First group">
+                                        <a href="{{Route('supplier.edit',["supplier"=>$supplier->id])}}" class="btn btn-info btn-rounded legitRipple">ویرایش <i class="fa fa-edit"></i></a>
+                                        <button class="btn btn-danger btn-rounded legitRipple" onclick="archiveFunction()"> حذف  <i class="fa fa-trash"></i></button>
+                                    </div>
+                                </form>
+
+                        </td>
+
                     </tr>
                 @endforeach
 
@@ -44,6 +62,8 @@
             </table>
         </div>
     </div>
+
+
 
 @endsection
 

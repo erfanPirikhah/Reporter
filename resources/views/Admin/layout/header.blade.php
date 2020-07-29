@@ -14,6 +14,8 @@
     <link href="/assets/css/core.css" rel="stylesheet" type="text/css">
     <link href="/assets/css/components.css" rel="stylesheet" type="text/css">
     <link href="/assets/css/colors.css" rel="stylesheet" type="text/css">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
     <!-- /global stylesheets -->
 
     <!-- Core JS files -->
@@ -38,6 +40,7 @@
     <script type="text/javascript" src="/assets/js/plugins/ui/ripple.min.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <!-- /theme JS files -->
 
 </head>
