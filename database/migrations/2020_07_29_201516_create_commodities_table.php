@@ -18,7 +18,7 @@ class CreateCommoditiesTable extends Migration
             $table->string('nameCommodity');
             $table->integer('codeCommodity');
             $table->bigInteger('Supplier_id')->unsigned();
-            $table->foreign('Supplier_id')->references('id')->on('suppliers')->onDelete('cascade');
+            $table->foreign('supplier_id')->references('id')->on('suppliers')->onDelete('cascade');
             $table->string('imageUrl');
             $table->integer('priceCommodity');
             $table->boolean('status')->default(1);
