@@ -11,6 +11,16 @@
 
                     <!-- Main -->
                     <li><a href="/"><i class="icon-home4"></i> <span>داشبورد</span></a></li>
+
+                    <li>
+                        <a href="#"><i class="fa fa-product-hunt"></i> <span>کالا</span></a>
+                        <ul>
+                            <li><a href="{{Route('commodity.index')}}"> لیست کالا <i class="fa fa-list"></i></a></li>
+                            <li><a href="{{Route('commodity.create')}}">افزودن کالا <i class="fa fa-plus-circle"></i> </a></li>
+
+                        </ul>
+                    </li>
+
                     <li>
                         <a href="#"><i class="fa fa-user"></i> <span>تامین کننده</span></a>
                         <ul>

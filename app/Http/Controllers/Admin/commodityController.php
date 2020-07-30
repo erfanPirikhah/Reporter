@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Commodity;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\commodityRequest;
+use App\Supplier;
 use Illuminate\Http\Request;
 
 class commodityController extends Controller
@@ -15,7 +17,9 @@ class commodityController extends Controller
      */
     public function index()
     {
-        //
+        $counter=1;
+        $commoditis = Commodity::latest()->paginate(15);
+        return view('Admin.Commodity.index',compact('commoditis','counter'));
     }
 
     /**
@@ -25,7 +29,8 @@ class commodityController extends Controller
      */
     public function create()
     {
-        return view('Admin.commodity.create');
+        $suppliers =Supplier::latest()->get();
+        return view('Admin.commodity.create',compact('suppliers'));
     }
 
     /**
@@ -34,9 +39,24 @@ class commodityController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(commodityRequest $request)
     {
-        //
+
+         $codeCommodity=$this->generateKye();
+
+        Commodity::create([
+
+            'nameCommodity'=>$request->nameCommodity,
+            'codeCommodity'=>$codeCommodity,
+            'Supplier_id'=>$request->supplier,
+            'imageUrl'=>$request->filepath,
+            'priceCommodity'=>$request->priceCommodity,
+            'status'=>$request->status
+        ]);
+
+        alert()->success('با موفقیت افزوده شد');
+        return redirect('commodity');
+
     }
 
     /**
@@ -81,6 +101,21 @@ class commodityController extends Controller
      */
     public function destroy(Commodity $commodity)
     {
-        //
+        $commodity->delete();
+        alert()->error('باموفقیت حذف شد!!!');
+        return back();
+    }
+
+    public function generateKye()
+    {
+
+        $code_id= rand(10,100000);
+        $commodityCode = Commodity::where('codeCommodity',"$code_id")->first();
+        if ( $commodityCode > 1)
+        {
+            return rand(10,100000);
+        }else{
+            return  $code_id;
+        }
     }
 }
