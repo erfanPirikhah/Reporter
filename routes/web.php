@@ -6,9 +6,10 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::get('/',function(){return view('Admin.index');});
 
-Route::namespace('Admin')->group(function () {
+
+Route::namespace('Admin')->middleware('auth')->group(function () {
+    Route::get('/',function(){return view('Admin.index');});
     Route::resource('supplier' ,'supplierController');
     Route::resource('commodity' ,'commodityController');
 

@@ -17,7 +17,7 @@
         <div class="panel-body">
         </div>
 
-        <div class="table-responsive">
+        <div class="table-responsive ">
             <table class="table table-hover">
                 <thead>
                 <tr>
@@ -27,7 +27,7 @@
                     <th>کد کالا</th>
                     <th>تامین کننده</th>
                     <th>قیمت</th>
-                    <th>تاریخ ثبت</th>
+                
                     <th>وضعیت</th>
                     <th>نمایش</th>
                     <th>تنظیمات</th>
@@ -41,13 +41,13 @@
                 @foreach($commoditis as $commodity)
                     <tr>
                         <td>{{$counter++}}</td>
-                        <td><img src="{{$commodity->imageUrl}}" alt="" width="150" height="100"></td>
+                        <td><img src="{{$commodity->imageUrl}}" alt=""  class="img-responsive"  width="90" height="70" ></td>
                         <td>{{$commodity->nameCommodity}}</td>
                         <td>{{$commodity->codeCommodity}}</td>
                         <td>{{$commodity->Supplier->nameSupplier}}</td>
 
                         <td>{{$commodity->priceCommodity}}</td>
-                        <td> {{Verta($commodity->created_at)->formatDate()}}</td>
+                       
                         <td><span class="{{$commodity->status  ?  'label label-success' : 'label label-danger'}}">{{$commodity->status  ? 'موجود' : 'نامجود'}}</span></td>
                         <td><a href="{{Route('commodity.show',["commodity"=>$commodity->id])}}" class="btn btn-default btn-raised legitRipple">جزئیات </a> </td>
                         <td>
