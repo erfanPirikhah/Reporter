@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSuppliersTable extends Migration
+class CreateExpensesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,14 @@ class CreateSuppliersTable extends Migration
      */
     public function up()
     {
-        Schema::create('suppliers', function (Blueprint $table) {
+        Schema::create('expenses', function (Blueprint $table) {
             $table->id();
-            $table->string('nameSupplier');
             $table->text('description');
-            $table->string('number_phone');
+            $table->integer('documentNumber');
+            ///typeExpense_id
+            $table->bigInteger('type_id')->unsigned();
+            $table->foreign('type_id')->references('id')->on('type_expenses')->onDelete('cascade');
+
             $table->timestamps();
         });
     }
@@ -29,6 +32,6 @@ class CreateSuppliersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('suppliers');
+        Schema::dropIfExists('expenses');
     }
 }

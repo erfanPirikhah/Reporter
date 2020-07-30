@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Commodity;
+use App\Expense;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\commodityRequest;
-use App\Supplier;
+use App\Http\Requests\expenseRequest;
+use App\typeExpense;
 use Illuminate\Http\Request;
 use Morilog\Jalali\CalendarUtils;
 
-class commodityController extends Controller
+class expenseController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,8 +19,8 @@ class commodityController extends Controller
     public function index()
     {
         $counter=1;
-        $commoditis = Commodity::latest()->paginate(15);
-        return view('Admin.Commodity.index',compact('commoditis','counter'));
+        $expenses=Expense::latest()->paginate(15);
+        return view('Admin.expense.index',compact('expenses','counter'));
     }
 
     /**
@@ -30,8 +30,8 @@ class commodityController extends Controller
      */
     public function create()
     {
-        $suppliers =Supplier::latest()->get();
-        return view('Admin.commodity.create',compact('suppliers'));
+        $typeExpenses=typeExpense::all();
+        return view('Admin.expense.create',compact('typeExpenses'));
     }
 
     /**
@@ -40,62 +40,73 @@ class commodityController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(commodityRequest $request)
+    public function store(expenseRequest $request)
     {
 
+        ///check date Database == $request->date
 
-         $codeCommodity=$this->generateKye();
+            ///convert number Persin to English
+            $date_en = $this->convert_numbers($request->date);
+            ///explode date and save to vaiable
+            $persian_date = explode("/",   $date_en);
+            $year=$persian_date[0];
+            $month = $persian_date[1];
+            $day = $persian_date[2];
 
-        Commodity::create([
+            ///convert Persian date to  miladi
+            $miladiDate = CalendarUtils::toGregorian($year,$month, $day);
+            ///impload by / sepreator  [2020/2/2]
+            $DateConvert = implode('/', $miladiDate);
+             $DateConvert;
 
-            'nameCommodity'=>$request->nameCommodity,
-            'codeCommodity'=>$codeCommodity,
-            'Supplier_id'=>$request->supplier,
-            'imageUrl'=>$request->filepath,
-            'priceCommodity'=>$request->priceCommodity,
-            'status'=>$request->status
-        ]);
+            Expense::create([
+                'documentNumber'=>$request->documentNumber,
+                'type_id'=>$request->type,
+                'description'=>$request->description,
+                'created_at'=>$DateConvert
+            ]);
 
         alert()->success('با موفقیت افزوده شد');
-        return redirect('commodity');
+        return redirect('expense');
+
+
 
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Commodity  $commodity
+     * @param  \App\Expense  $expense
      * @return \Illuminate\Http\Response
      */
-    public function show(Commodity $commodity)
+    public function show(Expense $expense)
     {
-        return view('Admin.Commodity.show',compact('commodity'));
+        return view('Admin.expense.show',compact('expense'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Commodity  $commodity
+     * @param  \App\Expense  $expense
      * @return \Illuminate\Http\Response
      */
-    public function edit(Commodity $commodity)
+    public function edit(Expense $expense)
     {
-        $suppliers =Supplier::latest()->get();
-        return view('Admin.commodity.edit',compact('commodity','suppliers'));
+        $typeExpenses=typeExpense::all();
+        return view('Admin.expense.edit',compact('expense','typeExpenses'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Commodity  $commodity
+     * @param  \App\Expense  $expense
      * @return \Illuminate\Http\Response
      */
-    public function update(commodityRequest $request, Commodity $commodity)
+    public function update(expenseRequest $request, Expense $expense)
     {
-
         ///check date Database == $request->date
-        if ($commodity->created_at != $request->date ){
+        if ($expense->created_at != $request->date ){
             ///convert number Persin to English
             $date_en = $this->convert_numbers($request->date);
             ///explode date and save to vaiable
@@ -113,53 +124,31 @@ class commodityController extends Controller
             $DateConvert=$request->date;
         }
 
-
-        $commodity->update([
-
-            'nameCommodity'=>$request->nameCommodity,
-            'Supplier_id'=>$request->supplier,
-            'imageUrl'=>$request->filepath,
-            'priceCommodity'=>$request->priceCommodity,
-            'status'=>$request->status,
-            'created_at' =>$DateConvert
+        Expense::create([
+            'documentNumber'=>$request->documentNumber,
+            'type_id'=>$request->type,
+            'description'=>$request->description,
+            'created_at'=>$DateConvert
         ]);
 
         alert()->success('با موفقیت بروزرسانی شد');
-        return redirect('commodity');
+        return redirect('expense');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Commodity  $commodity
+     * @param  \App\Expense  $expense
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Commodity $commodity)
+    public function destroy(Expense $expense)
     {
-        $commodity->delete();
+        $expense->delete();
         alert()->error('باموفقیت حذف شد!!!');
         return back();
     }
 
-    /*
-     * generate commodityCode automatic
-     */
-    public function generateKye()
-    {
-        $code_id= rand(10,100000);
-        $commodityCode = Commodity::where('codeCommodity',"$code_id")->first();
-        if ( $commodityCode > 1)
-        {
-            return rand(10,100000);
-        }else{
-            return  $code_id;
-        }
-    }
-
-
-    /*
-     *  function for convert persionNumber to english number
-     */
+    ///function for convert persionNumber to english number
     public  function convert_numbers($input)
     {
         $persian = array('۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹',',');

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class commodityRequest extends FormRequest
+class expenseRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,12 +24,11 @@ class commodityRequest extends FormRequest
     public function rules()
     {
         return [
-            'nameCommodity'=>'required',
-            'filepath'=>'required',
-            'supplier'=>'required',
-            'priceCommodity'=>'required',
-            'status'=>'required'
 
+            'documentNumber'=>'required|min:1|max:100000000|integer',
+            'type'=>'required',
+            'description'=>'required',
+            'date'=>'required'
         ];
     }
 }

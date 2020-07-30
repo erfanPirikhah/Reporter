@@ -44,7 +44,7 @@
 
                             <div class="col-lg-9">
                                 <select name="supplier" class="select select2-hidden-accessible" tabindex="-1" aria-hidden="true">
-                                    <option>انتخاب کنید</option>
+                                    <option value="">انتخاب کنید</option>
                                 @foreach($suppliers as $supplier)
                                     <option value="{{$supplier->id}}">{{$supplier->nameSupplier}}</option>
                                 @endforeach

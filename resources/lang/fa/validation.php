@@ -138,6 +138,10 @@ return array(
         'nameCommodity'=>"نام کالا",
         'priceCommodity'=>"قیمت کالا",
         'filepath'=>"فیلد تصویر   ",
-        'nameTypeExpense'=>'نوع هزینه'
+        'nameTypeExpense'=>'نوع هزینه',
+        'titleExpense'=>'عنوان هزینه',
+        'documentNumber'=>'شماره سند',
+        'supplier'=>'تامین کننده',
+        'type'=>'نوع'
     ),
 );
