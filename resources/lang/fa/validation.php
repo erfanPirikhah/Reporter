@@ -135,5 +135,9 @@ return array(
         "category" => "دسته",
         'nameSupplier'=>"نام تامین کننده",
         'numberSupplier'=>"شماره موبایل",
+        'nameCommodity'=>"نام کالا",
+        'priceCommodity'=>"قیمت کالا",
+        'filepath'=>"فیلد تصویر   ",
+        'nameTypeExpense'=>'نوع هزینه'
     ),
 );

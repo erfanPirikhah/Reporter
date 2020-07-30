@@ -20,7 +20,7 @@
    const error = document.querySelector('#divError')
     setTimeout(()=>{
        error.remove();
-    },4000)
+    },6000)
 </script>
 
 
