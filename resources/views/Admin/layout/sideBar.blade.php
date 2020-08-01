@@ -50,7 +50,9 @@
                     </li>
 
                     <li><a href="{{Route('typeExpense.index')}}"><i class="fa fa-print"></i> <span>نوع هزینه</span></a></li>
-                    <li><a href="/"><i class="icon-switch"></i> <span>خروج </span></a></li>
+                    <li>
+
+                    </li>
 
                     <!-- /page kits -->
 

@@ -38,7 +38,10 @@
         </ul>
 
         <div class="navbar-right">
-           <h5 class="text-white">نرم افزار گزارش مالی </h5>
+            <form action="{{route('logout')}}" method="post">
+                @csrf
+                <button type="submit" class="btn btn-default " style="margin-top: 5px;"> <i class="icon-switch"></i></button>
+            </form>
         </div>
     </div>
 </div>
