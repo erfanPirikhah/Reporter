@@ -8,6 +8,7 @@ Route::namespace('Admin')->middleware('auth')->group(function () {
     Route::resource('commodity' ,'commodityController');
     Route::resource('typeExpense' ,'typeExpenseController');
     Route::resource('expense' ,'expenseController');
+    Route::resource('sale' ,'saleController');
 });
 ///----------------End Routes Dashbord Admin --------------------------
 
@@ -19,3 +20,7 @@ Auth::routes();
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
     \UniSharp\LaravelFilemanager\Lfm::routes();
 });
+
+
+///----------------Api ---------------------------
+Route::get('/api/price','Admin\Api\apiController@getPrice');

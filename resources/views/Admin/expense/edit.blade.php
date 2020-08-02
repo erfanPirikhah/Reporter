@@ -63,7 +63,6 @@
                             <div class="col-lg-9">
                                 <input type="text" name="date" class="myclass" value="{{$expense->created_at}}" placeholder="تاریخ" id="mydate" >
                             </div>
-
                         </div>
 
 

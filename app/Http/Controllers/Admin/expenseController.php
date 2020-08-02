@@ -43,7 +43,7 @@ class expenseController extends Controller
     public function store(expenseRequest $request)
     {
 
-        ///check date Database == $request->date
+
 
             ///convert number Persin to English
             $date_en = $this->convert_numbers($request->date);
@@ -57,7 +57,7 @@ class expenseController extends Controller
             $miladiDate = CalendarUtils::toGregorian($year,$month, $day);
             ///impload by / sepreator  [2020/2/2]
             $DateConvert = implode('/', $miladiDate);
-             $DateConvert;
+
 
             Expense::create([
                 'documentNumber'=>$request->documentNumber,

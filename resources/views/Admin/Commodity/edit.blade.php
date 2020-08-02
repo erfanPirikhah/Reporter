@@ -7,7 +7,11 @@
         $('#lfm').filemanager('image', {prefix: domain});
 
     </script>
+
+
 @endsection
+
+
 
 @section('content')
     <div class="col-md-12">

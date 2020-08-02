@@ -15,4 +15,9 @@ class Commodity extends Model
         return $this->belongsTo(Supplier::class);
     }
 
+    public function Sales ()
+    {
+        return $this->belongsToMany(Sale::class);
+    }
+
 }
