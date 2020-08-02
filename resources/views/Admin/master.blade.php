@@ -82,6 +82,7 @@
 {{--Persion datePicker --}}
 <script type="text/javascript" src="/assets/js/persian-date.min.js"></script>
 <script type="text/javascript" src="/assets/js/persian-datepicker.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
         $("#mydate").persianDatepicker({

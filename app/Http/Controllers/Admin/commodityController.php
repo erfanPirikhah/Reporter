@@ -18,8 +18,11 @@ class commodityController extends Controller
      */
     public function index()
     {
+
         $counter=1;
         $commoditis = Commodity::latest()->paginate(15);
+
+
         return view('Admin.Commodity.index',compact('commoditis','counter'));
     }
 

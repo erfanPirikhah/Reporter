@@ -6,6 +6,7 @@ use App\Commodity;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\saleRequest;
 use App\Sale;
+use App\Supplier;
 use Illuminate\Http\Request;
 use Morilog\Jalali\CalendarUtils;
 
@@ -18,6 +19,8 @@ class saleController extends Controller
      */
     public function index()
     {
+
+
         $counter=1;
         $sales=Sale::latest()->paginate(15);
         return view('Admin.sale.index',compact('sales','counter'));

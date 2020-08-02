@@ -21,4 +21,6 @@ class Sale extends Model
        $supplier =Supplier::where('id',$supplier_id)->first();
         return  $supplier;
     }
+
+
 }

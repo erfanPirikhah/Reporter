@@ -11,4 +11,8 @@ class Supplier extends Model
     ];
 
 
+    public function commodities()
+    {
+        return $this->hasMany(Commodity::class);
+    }
 }

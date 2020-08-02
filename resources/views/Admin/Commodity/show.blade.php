@@ -2,7 +2,7 @@
 @section('content')
 
 
- 
+    {{   $commodity->saleList()}}
     
     <div class="panel panel-info panel-bordered">
         <div class="panel-heading">
@@ -64,7 +64,7 @@
                         <small> تصویر  :</small>
                         <img src="{{$commodity->imageUrl}}" class="img-responsive " alt="..." width="90%" height="70%" >
                     </div>
-        
+
                 </div>
            
          

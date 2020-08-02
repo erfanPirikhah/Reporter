@@ -17,7 +17,10 @@ class supplierController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   $counter=1;
+
+    {
+
+        $counter=1;
         $suppliers=Supplier::latest()->paginate(15);
         ///load view supplier index and send data $suppliers
         return view("Admin.supplier.index",compact('suppliers','counter'));

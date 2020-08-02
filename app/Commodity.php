@@ -20,4 +20,7 @@ class Commodity extends Model
         return $this->belongsToMany(Sale::class);
     }
 
+
+
+
 }

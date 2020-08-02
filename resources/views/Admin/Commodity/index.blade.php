@@ -61,7 +61,7 @@
                                         <button class="btn btn-danger btn-rounded legitRipple" onclick="archiveFunction()"> حذف  <i class="fa fa-trash"></i></button>
                                     </div>
                                 </form>
-
+                            </div>
                         </td>
 
                     </tr>

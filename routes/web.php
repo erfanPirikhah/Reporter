@@ -9,6 +9,11 @@ Route::namespace('Admin')->middleware('auth')->group(function () {
     Route::resource('typeExpense' ,'typeExpenseController');
     Route::resource('expense' ,'expenseController');
     Route::resource('sale' ,'saleController');
+
+    Route::get('/report','reportController@index')->name('index');
+    Route::get('/reportmonth','reportController@reportMonth')->name('month');
+    Route::get('/reportweek','reportController@reportWeek')->name('week');
+    Route::get('/reportday','reportController@reportDay')->name('day');
 });
 ///----------------End Routes Dashbord Admin --------------------------
 
@@ -23,4 +28,4 @@ Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']
 
 
 ///----------------Api ---------------------------
-Route::get('/api/price','Admin\Api\apiController@getPrice');
+Route::post('/api/supplier','Admin\reportController@apiSupplier');
