@@ -14,4 +14,11 @@ class Sale extends Model
     {
         return $this->belongsToMany(Commodity::class);
     }
+
+    public function  supplier()
+    {
+       $supplier_id = $this->commodities->pluck('supplier_id');
+       $supplier =Supplier::where('id',$supplier_id)->first();
+        return  $supplier;
+    }
 }

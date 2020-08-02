@@ -12,29 +12,9 @@
 
         <div class="panel-body">
             <div class="content">
-                <table style="width:100%">
-                    <tr>
-                        {{--  $sale resive on from supplierController@show--}}
-
-                        <th>نام فروشنده</th>
-                        <th>شهر خریدار</th>
-                        <th>شماره پیگری فروشنده</th>
-                        <th>شماره پیگیری خریدار</th>
-                        <th>قیمت کل</th>
-                        <th>تاریخ </th>
-
-                    </tr>
-                    <br>
-                    <tr>
-                        <td>{{$sale->buyerName}}</td>
-                        <td>{{$sale->buyerCity}}</td>
-                        <td>{{$sale->sellerCode}}</td>
-                        <td>{{$sale->buyerCode}}</td>
-                        <td>{{$sale->price}}</td>
-                        <td> {{Verta($sale->created_at)->formatDate()}}</td>
-                    </tr>
-
-                </table>
+                <a href="{{route('sale.index')}}" style="float: left" class=" btn btn-xlg bg-teal-400">
+                    بازگشت <i
+                            class="fa fa-arrow-circle-o-left "></i></a>
                 <br>
                 <hr>
 
@@ -43,9 +23,47 @@
                     <small> توضیحات :</small>
                     <div class="well ">
                         <label for="">
-                            تامین کننده :
+                            نام خریدار:
+                            {{$sale->buyerName}}
+                        </label><br>
 
-                            {{\App\Sale::with('commodities','suppliers')->first()}}
+                        <label for="">
+                            شهر خریدار :
+                            {{$sale->buyerCity}}
+                        </label><br>
+
+                        <label for="">
+                            شماره پیگری فروشنده :
+                            {{$sale->sellerCode}}
+                        </label><br>
+
+                        <label for="">
+                            شماره پیگیری خریدار :
+                            {{$sale->buyerCode}}
+                        </label><br>
+
+                        <label for="">
+                            تاریخ :
+                            {{Verta($sale->created_at)->formatDate()}}</td>
+                        </label><br>
+
+                        <label for="">
+                            قیمت کل :
+                            {{$sale->price}}
+                        </label><br>
+
+                        <label for="">
+                            تامین کننده :
+                            {{$sale->supplier()->nameSupplier}}
+                        </label><br>
+                        <label for="">
+                           کالا ی ثبت شده همراه قیمت  :
+                         <ul >
+                             @foreach($sale->commodities as $name )
+                                <li class="list-group-item">{{$name->nameCommodity}}       [ {{$name->priceCommodity}}]</li>
+                             @endforeach
+                         </ul>
+
                         </label><br>
 
 
@@ -53,9 +71,7 @@
 
 
                 </div>
-                <div class="col-sm-5">
-                    <small> تصویر  :</small>
-                </div>
+
 
             </div>
         </div>

@@ -23,11 +23,15 @@
             </table>
             <hr>
             <br>
-            <small> توضیحات :</small>
-            <div class="well mb-10">
 
-                {{$supplier->description}}
+            <div class="col-sm-5">
+                <label> توضیحات :</label>
+                <div class="well mb-10">
+
+                    {{$supplier->description}}
+                </div>
             </div>
+
         </div>
 
 

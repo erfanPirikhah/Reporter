@@ -38,10 +38,10 @@
                     </table>
                     <br>
                     <hr>
-        
-        
+
+                    <small> توضیحات :</small>
                     <div class="col-sm-5">
-                        <small> توضیحات :</small>
+
                         <div class="well ">
                             <label for="">
                                 تامین کننده :
@@ -62,7 +62,7 @@
                     </div>
                     <div class="col-sm-5">
                         <small> تصویر  :</small>
-                        <img src="{{$commodity->imageUrl}}" class="rounded float-left " alt="..." width="90%" height="70%" >
+                        <img src="{{$commodity->imageUrl}}" class="img-responsive " alt="..." width="90%" height="70%" >
                     </div>
         
                 </div>
