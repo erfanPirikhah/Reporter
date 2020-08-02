@@ -4,18 +4,21 @@
 
     <script>
        async function val() {
+           ///select input supp for give value to send backend
            var id = document.getElementById("supp").value;
-           
+
+           ///send value to route and result commodity and sale by filter supplier
       await axios.post('/api/supplier',{id})
             .then(data=>{
                 let items =data.data
                 let counter=1;
+                ///select input suppTbl for the generate table
                 let result= document.querySelector('#suppTbl')
                 result.innerHTML =''
                 items.forEach(item=>{
                     item.sales.forEach(sale =>{
 
-
+                    /// inner  item  to table
                         result.innerHTML += `
                             <tr>
                                 <td>${counter++}</td>

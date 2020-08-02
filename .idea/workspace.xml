@@ -2,21 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c78325c6-9c94-42b7-94d9-aa987d817a45" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Commodity.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Commodity.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/commodityController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/commodityController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/saleController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/saleController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/supplierController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/supplierController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Sale.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Sale.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Supplier.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Supplier.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Admin/Commodity/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Admin/Commodity/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Admin/Commodity/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Admin/Commodity/show.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Admin/layout/header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Admin/layout/header.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Admin/master.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Admin/master.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Admin/sale/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Admin/sale/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/reportController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/reportController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/Admin/report/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Admin/report/index.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -30,10 +17,13 @@
   <component name="FileEditorManager">
     <leaf>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/resources/views/Admin/report/index.blade.php">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/reportController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="203">
-              <caret line="19" column="60" selection-start-line="19" selection-start-column="60" selection-end-line="19" selection-end-column="60" />
+            <state relative-caret-position="437">
+              <caret line="32" column="33" selection-start-line="32" selection-start-column="33" selection-end-line="32" selection-end-column="33" />
+              <folding>
+                <element signature="e#46#64#0#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -62,6 +52,7 @@
       <find>commoditis</find>
       <find>data</find>
       <find>$commodity</find>
+      <find>comm</find>
     </findStrings>
     <replaceStrings>
       <replace>/assets</replace>
@@ -128,8 +119,8 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/Admin/saleController.php" />
         <option value="$PROJECT_DIR$/resources/views/Admin/master.blade.php" />
         <option value="$PROJECT_DIR$/package.json" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Admin/reportController.php" />
         <option value="$PROJECT_DIR$/resources/views/Admin/report/index.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Admin/reportController.php" />
       </list>
     </option>
   </component>
@@ -384,12 +375,12 @@
       <workItem from="1596188586483" duration="1203000" />
       <workItem from="1596275856563" duration="3746000" />
       <workItem from="1596314079339" duration="8299000" />
-      <workItem from="1596359420277" duration="43288000" />
+      <workItem from="1596359420277" duration="44036000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="131277000" />
+    <option name="totallyTimeSpent" value="132025000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
@@ -767,27 +758,27 @@
     <entry file="file://$PROJECT_DIR$/resources/js/bootstrap.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/reportController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="30" column="22" selection-start-line="30" selection-start-column="22" selection-end-line="30" selection-end-column="22" />
-          <folding>
-            <element signature="e#46#64#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/Admin/sale/create.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-232">
+        <state relative-caret-position="-116">
           <caret line="11" column="23" lean-forward="true" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/Admin/report/index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="19" column="60" selection-start-line="19" selection-start-column="60" selection-end-line="19" selection-end-column="60" />
+        <state relative-caret-position="261">
+          <caret line="10" column="37" selection-start-line="10" selection-start-column="24" selection-end-line="10" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/reportController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="32" column="33" selection-start-line="32" selection-start-column="33" selection-end-line="32" selection-end-column="33" />
+          <folding>
+            <element signature="e#46#64#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

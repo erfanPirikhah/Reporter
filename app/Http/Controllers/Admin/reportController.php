@@ -20,26 +20,35 @@ class reportController extends Controller
         return view('Admin.report.index', compact('day', 'week', 'month', 'suppliers'));
     }
 
+    /*
+     * return all Supplier
+     */
     public function suppliers()
     {
         return Supplier::all();
     }
 
+    /*
+     * The function send Commodity and Sales by filter supplier_id
+     * route API [ /api/supplier ]
+     */
     public function apiSupplier(Request $request)
     {
-            $id = $request->input('id');
-            if ($id) {
-                $sales =Commodity::where('supplier_id',$id)->with('Sales')->get();
-                return response($sales,200);
+        $id = $request->input('id');
+        if ($id) {
+            $sales = Commodity::where('supplier_id', $id)->with('Sales')->get();
+            return response($sales, 200);
 
-            } else {
-                return response('bad', 400);
-            }
-
+        } else {
+            return response('bad', 400);
+        }
 
 
     }
 
+    /*
+   * report total price in one Month
+   */
     public function reportMonth()
     {
         $now = Carbon::now()->subDays(30);
@@ -54,6 +63,9 @@ class reportController extends Controller
 
     }
 
+    /*
+     * report total price in one Week
+     */
     public function reportWeek()
     {
         $now = Carbon::now()->subDays(7);
@@ -66,6 +78,10 @@ class reportController extends Controller
 
     }
 
+
+    /*
+     * report total price in one Day
+     */
     public function reportDay()
     {
         $now = Carbon::now()->subDays(1);
