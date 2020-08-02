@@ -13,8 +13,8 @@
             var sum = 0;
             /// foreach and sums values
             $.each(result,function(key, value){
-                    var val = JSON.parse(value)
-                    sum =parseInt(val)+sum;
+                var val = JSON.parse(value)
+                sum =parseInt(val)+sum;
             })
 
 
@@ -54,8 +54,9 @@
 
     @include('Admin.layout.errors')
     <!-- Basic legend -->
-        <form class="form-horizontal" method="post" action="{{route('sale.store')}}">
+        <form class="form-horizontal" method="post" action="{{route('sale.update',['sale'=>$sale->id])}}"">
             {{csrf_field()}}
+            {{ method_field('patch') }}
             <div class="panel panel-flat">
                 <div class="panel-body">
                     <fieldset>
@@ -71,7 +72,7 @@
                             <label class="col-lg-3 control-label">نام خریدار: </label>
                             <div class="col-lg-9">
                                 <input type="text" name="buyerName" class="form-control"
-                                       placeholder="نام  کالا را وارد کنید"   value="{{ old('buyerName')}}">
+                                       placeholder="نام  کالا را وارد کنید"   value="{{ $sale->buyerName}}">
                             </div>
                         </div>
 
@@ -80,21 +81,21 @@
                             <label class="col-lg-3 control-label">نام شهر خریدار :</label>
                             <div class="col-lg-9">
                                 <input type="text" name="buyerCity"  class="form-control"
-                                       placeholder="نام  کالا را وارد کنید"   value="{{ old('buyerCity')}}">
+                                       placeholder="نام  کالا را وارد کنید"   value="{{ $sale->buyerCity}}">
                             </div>
                         </div>
                         <br>
                         <div class="form-group" >
                             <label class="col-lg-3 control-label">تاریخ:</label>
                             <div class="col-lg-9">
-                                <input type="text" name="date" class="myclass"  placeholder="تاریخ" id="mydate" >
+                                <input type="text" name="date" class="myclass" value="{{$sale->created_at}}" placeholder="تاریخ" id="mydate" >
                             </div>
                         </div>
                         <br>
                         <div class="form-group" id="numberGroup">
                             <label class="col-lg-3 control-label">شماره موبایل:</label>
                             <div class="col-lg-9">
-                                <input type="text"  name="phoneBuyer"  class="form-control" value="{{ old('phoneBuyer')}}" pattern="09(0[1-2]|1[0-9]|3[0-9]|2[0-1])-?[0-9]{3}-?[0-9]{4}" placeholder="شماره  موبایل را وارد کنید ">
+                                <input type="text"  name="phoneBuyer"  class="form-control" value="{{ $sale->phoneBuyer}}" pattern="09(0[1-2]|1[0-9]|3[0-9]|2[0-1])-?[0-9]{3}-?[0-9]{4}" placeholder="شماره  موبایل را وارد کنید ">
                             </div>
                         </div>
 
@@ -103,15 +104,15 @@
                             <label class="col-lg-3 control-label">انتخاب کالا</label>
                             <div class="col-lg-9">
                                 <select multiple="" id="commodite" name="commodity_id[]" class="select-border-color border-warning select2-hidden-accessible" tabindex="-1" aria-hidden="true" >
-                                       @foreach($commoditis as $commodite)
-                                        <option value="{{$commodite->id}}" data_id="[{{$commodite->priceCommodity}}]" >{{$commodite->nameCommodity}}</option>
+                                    @foreach($commoditis as $commodite)
+                                        <option value="{{$commodite->id}}" data_id="[{{$commodite->priceCommodity}}]"  {{in_array($commodite->id ,$sale->commodities->pluck('id')->toArray())   ? 'selected' : ''}}>{{$commodite->nameCommodity}}</option>
                                     @endforeach
                                 </select>
                             </div>
                         </div>
 
 
-                        <input type="hidden" name="price" id="price" value="">
+                        <input type="hidden" name="price" id="price" value="{{ $sale->price}}">
                     </fieldset>
 
 

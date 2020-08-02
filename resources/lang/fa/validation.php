@@ -142,6 +142,10 @@ return array(
         'titleExpense'=>'عنوان هزینه',
         'documentNumber'=>'شماره سند',
         'supplier'=>'تامین کننده',
-        'type'=>'نوع'
+        'type'=>'نوع',
+        'buyerName'=>'نام خریدار',
+        'buyerCity'=>'شهر خریدار',
+        'phoneBuyer'=>'شماره موبایل',
+        'price'=>'هزینه',
     ),
 );

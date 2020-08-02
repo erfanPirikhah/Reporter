@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Commodity;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\saleRequest;
 use App\Sale;
 use Illuminate\Http\Request;
 use Morilog\Jalali\CalendarUtils;
@@ -17,7 +18,9 @@ class saleController extends Controller
      */
     public function index()
     {
-        //
+        $counter=1;
+        $sales=Sale::latest()->paginate(15);
+        return view('Admin.sale.index',compact('sales','counter'));
     }
 
     /**
@@ -37,7 +40,7 @@ class saleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(saleRequest $request)
     {
 
 
@@ -57,7 +60,9 @@ class saleController extends Controller
         //-------------------------------end Date------------------------
 
         ////-----------------Kye gnerate -------------
-        $code=$this->generateKye();
+        $codeSaler=$this->generateKye();
+        $codeBuyer=$this->generateKye();
+
         ////-----------------end Kye gnerate -------------
 
 
@@ -65,8 +70,8 @@ class saleController extends Controller
 
             'buyerName'=>$request->buyerName,
             'buyerCity'=>$request->buyerCity,
-            'sellerCode'=>11,
-            'buyerCode'=>11,
+            'sellerCode'=> $codeSaler,
+            'buyerCode'=> $codeBuyer,
             'phoneBuyer'=>$request->phoneBuyer,
             'price'=>$request->price,
             'created_at'=>$DateConvert
@@ -74,8 +79,8 @@ class saleController extends Controller
         $sale->commodities()->attach(request('commodity_id'));
 
         alert()->success('با موفقیت افزوده شد');
-//        return redirect('commodity');
-        return back();
+        return redirect('sale');
+
     }
 
 
@@ -87,7 +92,7 @@ class saleController extends Controller
      */
     public function show(Sale $sale)
     {
-        //
+        return view('Admin.sale.show',compact('sale'));
     }
 
     /**
@@ -98,7 +103,8 @@ class saleController extends Controller
      */
     public function edit(Sale $sale)
     {
-        //
+        $commoditis  = Commodity::all();
+        return view('Admin.sale.edit',compact('sale','commoditis'));
     }
 
     /**
@@ -108,9 +114,44 @@ class saleController extends Controller
      * @param  \App\Sale  $sale
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Sale $sale)
+    public function update(saleRequest $request, Sale $sale)
     {
-        //
+
+        ///check date Database == $request->date
+        if ($sale->created_at != $request->date ){
+            ///convert number Persin to English
+            $date_en = $this->convert_numbers($request->date);
+            ///explode date and save to vaiable
+            $persian_date = explode("/",   $date_en);
+            $year=$persian_date[0];
+            $month = $persian_date[1];
+            $day = $persian_date[2];
+
+            ///convert Persian date to  miladi
+            $miladiDate = CalendarUtils::toGregorian($year,$month, $day);
+            ///impload by / sepreator  [2020/2/2]
+            $DateConvert = implode('/', $miladiDate);
+
+        }else{
+            $DateConvert=$request->date;
+        }
+
+
+
+
+
+        $sale->update([
+
+            'buyerName'=>$request->buyerName,
+            'buyerCity'=>$request->buyerCity,
+            'phoneBuyer'=>$request->phoneBuyer,
+            'price'=>$request->price,
+            'created_at'=>$DateConvert
+        ]);
+        $sale->commodities()->sync(request('commodity_id'));
+
+        alert()->success('با موفقیت بروز رسانی  شد');
+        return redirect('sale');
     }
 
     /**
@@ -121,7 +162,9 @@ class saleController extends Controller
      */
     public function destroy(Sale $sale)
     {
-        //
+        $sale->delete();
+        alert()->error('باموفقیت حذف شد!!!');
+        return back();
     }
 
     /*
@@ -130,8 +173,8 @@ class saleController extends Controller
     public function generateKye()
     {
         $code_id= rand(10,100000);
-       return $salerCode= Sale::where('sellerCode',"$code_id")
-            ->where('buyerCode',"$code_id");
+        $salerCode= Sale::where('sellerCode',"$code_id")
+            ->where('buyerCode',"$code_id")->first();
 
         if ( $salerCode > 1)
         {

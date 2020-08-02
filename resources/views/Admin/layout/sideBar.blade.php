@@ -32,6 +32,15 @@
                     </li>
 
                     <li>
+                        <a href="#"><i class="fa fa-share-alt"></i> <span>فروش</span></a>
+                        <ul>
+                            <li><a href="{{Route('sale.index')}}"> لیست فروش <i class="fa fa-list"></i></a></li>
+                            <li><a href="{{Route('sale.create')}}">ثبت فروش <i class="fa fa-plus-circle"></i> </a></li>
+
+                        </ul>
+                    </li>
+
+                    <li>
                         <a href="#"><i class="fa fa-user"></i> <span>تامین کننده</span></a>
                         <ul>
                             <li><a href="{{Route('supplier.index')}}"> لیست تامین کننده ها <i class="fa fa-list"></i></a></li>
