@@ -10,6 +10,17 @@ class Commodity extends Model
         'nameCommodity', 'codeCommodity', 'Supplier_id', 'imageUrl', 'priceCommodity', 'status', 'created_at','updated_at'
     ];
 
+    public function scopeSearch($query,$key)
+    {
+
+        $query->where('nameCommodity','LIKE','%'.$key.'%')
+            ->Orwhere('codeCommodity','LIKE','%'.$key.'%')
+            ->Orwhere('priceCommodity','LIKE','%'.$key.'%');
+
+        return $query;
+    }
+
+
     public function Supplier()
     {
         return $this->belongsTo(Supplier::class);
@@ -19,6 +30,8 @@ class Commodity extends Model
     {
         return $this->belongsToMany(Sale::class);
     }
+
+
 
 
 

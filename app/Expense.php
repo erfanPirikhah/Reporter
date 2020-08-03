@@ -14,4 +14,12 @@ class Expense extends Model
     {
         return $this->belongsTo(typeExpense::class,'type_id','id');
     }
+
+
+    public function scopeSearch($query,$key)
+    {
+        $query->where('documentNumber','LIKE','%'.$key.'%');
+
+        return $query;
+    }
 }

@@ -170,6 +170,16 @@ class saleController extends Controller
         return back();
     }
 
+
+    public function search (Request $request)
+    {
+        $counter=1;
+        $keyWord = request('search');
+        $sales = Sale::search($keyWord)->latest()->paginate(15);
+        return view('Admin.sale.index',compact('sales','counter'));
+    }
+
+
     /*
   * generate SalerCode automatic
   */

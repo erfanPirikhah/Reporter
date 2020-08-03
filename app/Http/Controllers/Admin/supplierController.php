@@ -135,6 +135,15 @@ class supplierController extends Controller
     }
 
 
+    public function search (Request $request)
+    {
+        $counter=1;
+        $keyWord = request('search');
+        $suppliers = Supplier::search($keyWord)->latest()->paginate(15);
+        return view('Admin.supplier.index',compact('suppliers','counter'));
+    }
+
+
     ///function for convert persionNumber to english number
     public  function convert_numbers($input)
     {

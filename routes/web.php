@@ -3,14 +3,16 @@
 use Illuminate\Support\Facades\Route;
 ///----------------Routes Dashbord Admin ---------------------------
 Route::namespace('Admin')->middleware('auth')->group(function () {
-    Route::get('/',function(){return view('Admin.index');});
+
     Route::resource('supplier' ,'supplierController');
     Route::resource('commodity' ,'commodityController');
     Route::resource('typeExpense' ,'typeExpenseController');
     Route::resource('expense' ,'expenseController');
     Route::resource('sale' ,'saleController');
 
-    Route::get('/report','reportController@index')->name('index');
+
+
+    Route::get('/','reportController@index')->name('index');
     Route::get('/reportmonth','reportController@reportMonth')->name('month');
     Route::get('/reportweek','reportController@reportWeek')->name('week');
     Route::get('/reportday','reportController@reportDay')->name('day');
@@ -29,3 +31,11 @@ Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']
 
 ///----------------Api ---------------------------
 Route::post('/api/supplier','Admin\reportController@apiSupplier');
+Route::post('/api/commodity','Admin\reportController@apiCommodity');
+
+
+///----------------Search ---------------------------
+Route::get('search/sale' , 'Admin\saleController@search')->name('sale.search');
+Route::get('search/supplier' , 'Admin\supplierController@search')->name('supplier.search');
+Route::get('search/commodity' , 'Admin\commodityController@search')->name('commodity.search');
+Route::get('search/expense' , 'Admin\expenseController@search')->name('expense.search');

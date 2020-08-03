@@ -21,8 +21,15 @@ class commodityController extends Controller
 
         $counter=1;
         $commoditis = Commodity::latest()->paginate(15);
+        return view('Admin.Commodity.index',compact('commoditis','counter'));
+    }
 
+    public function search (Request $request)
+    {
 
+        $counter=1;
+        $keyWord = request('search');
+        $commoditis = Commodity::search($keyWord)->latest()->paginate(15);
         return view('Admin.Commodity.index',compact('commoditis','counter'));
     }
 

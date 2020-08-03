@@ -23,6 +23,15 @@ class expenseController extends Controller
         return view('Admin.expense.index',compact('expenses','counter'));
     }
 
+    public function search (Request $request)
+    {
+
+        $counter=1;
+        $keyWord = request('search');
+        $expenses = Expense::search($keyWord)->latest()->paginate(15);
+        return view('Admin.expense.index',compact('expenses','counter'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *

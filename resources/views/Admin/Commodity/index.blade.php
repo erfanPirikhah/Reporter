@@ -18,6 +18,14 @@
         </div>
 
         <div class="table-responsive ">
+            <div id="DataTables_Table_0_filter" class="dataTables_filter">
+                <form action="{{route('commodity.search')}}" method="get">
+                    <input type="text" class="" name="search" placeholder="جستوجو..." aria-controls="DataTables_Table_0">
+                    <button class="btn btn-navbar" type="submit">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </form>
+            </div>
             <table class="table table-hover">
                 <thead>
                 <tr>

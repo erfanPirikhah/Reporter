@@ -17,7 +17,8 @@ class reportController extends Controller
         $month = $this->reportMonth();
         $day = $this->reportDay();
         $suppliers = $this->suppliers();
-        return view('Admin.report.index', compact('day', 'week', 'month', 'suppliers'));
+        $commoditis=$this->commoditis();
+        return view('Admin.report.index', compact('day', 'week', 'month', 'suppliers','commoditis'));
     }
 
     /*
@@ -29,21 +30,42 @@ class reportController extends Controller
     }
 
     /*
+   * return all Supplier
+   */
+    public function commoditis()
+    {
+        return Commodity::all();
+    }
+
+    /*
      * The function send Commodity and Sales by filter supplier_id
      * route API [ /api/supplier ]
      */
     public function apiSupplier(Request $request)
     {
         $id = $request->input('id');
-        if ($id) {
-            $sales = Commodity::where('supplier_id', $id)->with('Sales')->get();
+
+            if ($id == 0){
+
+                $sales = Commodity::with('Sales')->get();
+            }else{
+                $sales = Commodity::where('supplier_id', $id)->with('Sales')->get();
+            }
             return response($sales, 200);
 
-        } else {
-            return response('bad', 400);
+    }
+
+    public function apiCommodity(Request $request)
+    {
+        $id = $request->input('id');
+
+        if ($id == 0){
+
+            $sales = Commodity::with('Sales')->get();
+        }else{
+            $sales = Commodity::where('id', $id)->with('Sales')->get();
         }
-
-
+        return response($sales, 200);
     }
 
     /*

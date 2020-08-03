@@ -15,4 +15,11 @@ class Supplier extends Model
     {
         return $this->hasMany(Commodity::class);
     }
+
+    public function scopeSearch($query,$key)
+    {
+        $query->where('nameSupplier','LIKE','%'.$key.'%')
+        ->Orwhere('number_phone','LIKE','%'.$key.'%');
+        return $query;
+    }
 }

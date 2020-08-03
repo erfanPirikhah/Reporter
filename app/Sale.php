@@ -22,5 +22,17 @@ class Sale extends Model
         return  $supplier;
     }
 
+    public function scopeSearch($query,$key)
+    {
+        $query->where('buyerName','LIKE','%'.$key.'%')
+            ->Orwhere('buyerCity','LIKE','%'.$key.'%')
+            ->Orwhere('sellerCode','LIKE','%'.$key.'%')
+            ->Orwhere('buyerCode','LIKE','%'.$key.'%')
+            ->Orwhere('phoneBuyer','LIKE','%'.$key.'%')
+            ->Orwhere('price','LIKE','%'.$key.'%');
+
+        return $query;
+    }
+
 
 }
